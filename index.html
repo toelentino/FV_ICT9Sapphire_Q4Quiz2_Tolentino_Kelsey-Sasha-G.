@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Score Analyzer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+    body {
+        background-color: #ffcbc7;
+        font-family: 'Courier New', monospace;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .rating {
+        font-weight: bold;
+    }
+    .input-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+    .subject {
+        text-align: center;
+    }
+    .image {
+        width: 100px; 
+        height: 100px; 
+        object-fit: cover; 
+    }
+    .highlight-title {
+        background-color: #ffa07a; 
+        color: black; 
+        padding: 10px; 
+        border-radius: 5px; 
+        display: inline-block; 
+    }
+</style>
+
+
+</style>
+</head>
+<center>
+<body>
+    <div class="container">
+        <h1 class="text-center highlight-title">Score Analyzer</h1>
+
+        <details ontoggle="document.getElementById('message').innerHTML = 'Enter grades between 70 and 100 for English, Science, and Math; Click Calculate to see your average. Analyze your grades for English, Science, and Math for your upcoming card day.'">
+            <summary>
+                <u>Instructions</u>
+            </summary>
+            <i id="message"></i>
+        </details>
+        
+        <div class="input-container">
+    <div class="subject">
+        <img src="https://cdn-icons-png.freepik.com/512/5309/5309804.png" class="image" alt="English Icon">
+        <br>
+        <input type="number" id="english" placeholder="English Grade">
+    </div>
+    <div class="subject">
+        <img src="https://cdn-icons-png.flaticon.com/512/4466/4466436.png" class="image" alt="Science Icon">
+        <br>
+        <input type="number" id="science" placeholder="Science Grade">
+    </div>
+    <div class="subject">
+        <img src="https://cdn-icons-png.flaticon.com/512/8118/8118044.png" class="image" alt="Math Icon">
+        <br>
+        <input type="number" id="math" placeholder="Math Grade">
+    </div>
+</div>
+        <button class="btn btn-success mt-3" onclick="calculateAverage()">Calculate</button>
+        
+        <p id="result" class="rating mt-3"></p>
+    </div>
+
+    <script>
+        function calculateAverage() {
+            var english = document.getElementById('english').value;
+            var science = document.getElementById('science').value;
+            var math = document.getElementById('math').value;
+            
+            var englishNum = Number(english);
+            var scienceNum = Number(science);
+            var mathNum = Number(math);
+
+            var average = (englishNum + scienceNum + mathNum) / 3;
+            var rating = "";
+
+            switch (true) {
+                case (average >= 94 && average <= 100):
+                    rating = "Excellent";
+                    break;
+                case (average >= 87 && average < 94):
+                    rating = "Above Satisfactory";
+                    break;
+                case (average >= 80 && average < 87):
+                    rating = "Satisfactory";
+                    break;
+                case (average >= 75 && average < 80):
+                    rating = "Needs Improvement";
+                    break;
+                case (average >= 70 && average < 75):
+                    rating = "Poor";
+                    break;
+                default:
+                    rating = "Invalid grade range.";
+            }
+
+            document.getElementById('result').innerHTML = "Average Grade: " + average.toFixed(2) + "<br>Rating: " + rating;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ <footer class="text-center mt-4">
+            <p>Note: Grading Criteria and Equivalents can vary depending on school or district.</p>
+            <p>Copyright &copy; 2025 Kelsey Sasha G. Tolentino</p>
+
+        </footer>
+    </div>
+</body>
+</html>
